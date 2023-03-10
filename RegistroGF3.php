@@ -67,6 +67,10 @@
             <button id="consultar"  class="btn btn-primary px-2 m-2" >Consultar</button>
             <button onclick="generarPDF()" id="descargar"  class="btn btn-primary px-2 m-2" >Descargar</button>
             <button onclick="registrar()" id="registrar" class="btn btn-primary m-2">Registrar Partido</button>
+            <div class="mb-2 text-center">
+                <label for="jornada" class="form-label">Numero Jornada</label>
+                <input type="text" class="form-control text-center" id="jornada" name="jornada">
+            </div>
         </div>
     </div>
 
