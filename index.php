@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <a href="login.php" class="btn btn-primary" role="button">Registro</a>
         </div>
         <div class="mb-3">
-            <a href="estadisticas.php" class="btn btn-primary" role="button">Estadisticas</a>
+            <a href="RegistroGF3.php" class="btn btn-primary" role="button">Estadisticas</a>
         </div>
 
         <br>
@@ -55,7 +55,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </div>
 
 </div>
-
 
 </body>
 </html>

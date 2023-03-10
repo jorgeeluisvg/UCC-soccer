@@ -8,15 +8,30 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="script.js"></script>
 </head>
+</html>
 <!--SELECTS-->
-<div class="container">
+<div id="invoice"  class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-4 d-flex justify-content-center">
             <!--Equipo1-->
             <select id="equipo" class="d-flex text-center m-2" name="equipo">
                 <option>Equipo 1</option>
-                <?php
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Registro de equipos de fútbol</title>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <!--Bootstrap-->
+                    <link rel="stylesheet" href="css/bootstrap.min.css">
+                    <script src="js/bootstrap.bundle.min.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+                    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+                    <script src="script.js"></script>
+                </head>  <?php
                 include("conexion.php");
                 //get teams
                 $getTeams ="SELECT equipo FROM registroequipos";
@@ -50,18 +65,22 @@
                 ?>
             </select>
             <button id="consultar"  class="btn btn-primary px-2 m-2" >Consultar</button>
+            <button onclick="generarPDF()" id="descargar"  class="btn btn-primary px-2 m-2" >Descargar</button>
+            <button onclick="registrar()" id="registrar" class="btn btn-primary m-2">Registrar Partido</button>
         </div>
+    </div>
+
+    <div id="table-container">
+
+    </div>
+
+    <div id="table-container2">
+
     </div>
 </div>
 
 <!--Tables-->
-<div id="table-container">
 
-</div>
-
-<div id="table-container2">
-
-</div>
 
 <script>
     $(document).ready(function()
@@ -103,5 +122,10 @@
                 });
         });
     });
+</script>
+
+<script>
+    function registrar(){
+    }
 </script>
 </html>
