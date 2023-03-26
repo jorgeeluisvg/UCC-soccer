@@ -31,11 +31,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-
+<body class="bg-primary p-2 text-white bg-opacity-75">
 <!--Form-->
-
-<div class="col-md-3 position-absolute top-50 start-50 translate-middle text-center">
+<div class="col-md-3 position-absolute top-50 start-50 translate-middle text-center bg-white rounded shadow">
     <form method="POST">
         <!--Imagen-->
         <div class="col-md-14 d-flex align-items-center justify-content-center">
@@ -43,10 +41,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
 
         <div class="mb-3">
-            <a href="login.php" class="btn btn-primary" role="button">Registro</a>
+            <a href="login.php" class="btn btn-primary" role="button">Registro Equipos<br>Jugadores</a>
         </div>
+        <br>
         <div class="mb-3">
-            <a href="RegistroGF3.php" class="btn btn-primary" role="button">Estadisticas</a>
+            <a href="RegistroGF3_V2.php" class="btn btn-primary" role="button">Registro Juegos</a>
+        </div>
+        <br>
+        <div class="mb-3">
+            <a href="estadisticas.php" class="btn btn-primary" role="button">Estadisticas</a>
         </div>
 
         <br>

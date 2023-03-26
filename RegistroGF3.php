@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
     <title>Registro de equipos de fútbol</title>
     <meta charset="UTF-8">
@@ -11,125 +10,128 @@
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="script.js"></script>
 </head>
-</html>
-<!--SELECTS-->
-<div id="invoice"  class="container">
-    <div class="row d-flex justify-content-center">
-        <div class="col-sm-4 d-flex justify-content-center">
-            <!--Equipo1-->
-            <select id="equipo" class="d-flex text-center m-2" name="equipo">
-                <option>Equipo 1</option>
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Registro de equipos de fútbol</title>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <!--Bootstrap-->
-                    <link rel="stylesheet" href="css/bootstrap.min.css">
-                    <script src="js/bootstrap.bundle.min.js"></script>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-                    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-                    <script src="script.js"></script>
-                </head>  <?php
-                include("conexion.php");
-                //get teams
-                $getTeams ="SELECT equipo FROM registroequipos";
-                $result = $conn->query($getTeams);
-                if($result->num_rows> 0){
-                    $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
-                }
-                foreach ($options as $option) {
-                    ?>
-                    <option><?php echo $option['equipo']; ?> </option>
-                    <?php
-                }
-                ?>
-            </select>
+<body>
+    <br><Br>
+    <div class="container">
+        <br>
+        <h2 align="center">Ingresa Las Fichas de Juego</h2>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" id="tabla">
+                <tr>
+                    <th width="10%">Jornada</th>
+                    <th width="15%">Equipo</th>
+                    <th width="25%">Nombre</th>
+                    <th width="25%">Apellido Paterno</th>
+                    <th width="25%">Apellido Materno</th>
+                    <th width="2%">Goles</th>
+                    <th width="2%">Faltas</th>
+                    <th width="2%">Tarjetas Amarillas</th>
+                    <th width="2%">Tarjetas Rojas</th>
+                    <th width="2%"></th>
+                </tr>
+                <tr>
+                    <td contenteditable="true" class="jornada"></td>
+                    <td contenteditable="true" class="equipo"></td>
+                    <td contenteditable="true" class="nombre"></td>
+                    <td contenteditable="true" class="apellidop"></td>
+                    <td contenteditable="true" class="apellidom"></td>
+                    <td contenteditable="true" class="goles"></td>
+                    <td contenteditable="true" class="faltas"></td>
+                    <td contenteditable="true" class="tarjetasama"></td>
+                    <td contenteditable="true" class="tarjetasr"></td>
+                    <td></td>
+                </tr>
+            </table>
+            <div align="right">
+                <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
+            </div>
+            <div align="center">
+                <button type="button" name="save" id="save" class="btn btn-warning btn-xs">Guardar</button>
+            </div>
+            <br>
+            <div id="insertar_info">
 
-            <!--Equipo2-->
-            <select id="equipo2" class="text-center m-2" name="equipo2">
-                <option>Equipo 2</option>
-                <?php
-                include("conexion.php");
-                $getTeams ="SELECT equipo FROM registroequipos";
-                $result = $conn->query($getTeams);
-                if($result->num_rows> 0){
-                    $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
-                }
-                foreach ($options as $option) {
-                    ?>
-                    <option><?php echo $option['equipo']; ?> </option>
-                    <?php
-                }
-                ?>
-            </select>
-            <button id="consultar"  class="btn btn-primary px-2 m-2" >Consultar</button>
-            <button onclick="generarPDF()" id="descargar"  class="btn btn-primary px-2 m-2" >Descargar</button>
-            <button onclick="registrar()" id="registrar" class="btn btn-primary m-2">Registrar Partido</button>
-            <div class="mb-2 text-center">
-                <label for="jornada" class="form-label">Numero Jornada</label>
-                <input type="text" class="form-control text-center" id="jornada" name="jornada">
             </div>
         </div>
     </div>
-
-    <div id="table-container">
-
-    </div>
-
-    <div id="table-container2">
-
-    </div>
-</div>
-
-<!--Tables-->
-
+</body>
+</html>
 
 <script>
-    $(document).ready(function()
-    {
-        $("#consultar").on('click',function()
-        {
-            var value = $("#equipo").val();
-            var value2 = $("#equipo2").val();
-            console.log("Equipo 1 "+value);
-            console.log("Equipo2 "+value2);
-            $.ajax(
-                {
-                    url:'fetch.php',
-                    type:'POST',
-                    data:'request='+value,
-                    beforeSend:function ()
-                    {
-                        $("#table-container").html('Working');
-                    },
-                    success:function (data)
-                    {
-                        $("#table-container").html(data);
-                    },
-                });
+    $(document).ready(function (){
+        var count =1;
+        $(add).click(function (){
+            count = count +1;
+            var codigoHtml = "<tr id ='row"+count+"'>";
+            codigoHtml += "<td contenteditable='true' class='jornada'></td>";
+            codigoHtml += "<td contenteditable='true' class='equipo'></td>";
+            codigoHtml += "<td contenteditable='true' class='nombre'></td>";
+            codigoHtml += "<td contenteditable='true' class='apellidop'></td>";
+            codigoHtml += "<td contenteditable='true' class='apellidom'/td>";
+            codigoHtml += "<td contenteditable='true' class='goles'></td>";
+            codigoHtml += "<td contenteditable='true' class='faltas'></td>";
+            codigoHtml += "<td contenteditable='true' class='tarjetasama'></td>";
+            codigoHtml += "<td contenteditable='true' class='tarjetasr'></td>";
+            codigoHtml += "<td><button type='button' name='remove' data-row='row"+count+"'class='btn btn-danger btn-xs remove'>-</button><td>";
+            codigoHtml += "</tr>";
+            $(tabla).append(codigoHtml);
+        });
+        $(document).on('click','.remove',function (){
+            var deleteRow = $(this).data("row");
+            $('#'+deleteRow).remove();
+        });
+        $('#save').click(function (){
+            var jornada = [];
+            var equipo = [];
+            var nombre = [];
+            var apellidop = [];
+            var apellidom = [];
+            var goles = [];
+            var faltas = [];
+            var tarjetasama = [];
+            var tarjetasr = [];
 
-            $.ajax(
-                {
-                    url:'fetch.php',
-                    type:'POST',
-                    data:'request2='+value2,
-                    beforeSend:function()
-                    {
-                        $("#table-container2").html('Working');
-                    },
-                    success:function (data)
-                    {
-                        $("#table-container2").html(data);
-                    },
-                });
+            $('.jornada').each(function (){
+                jornada.push($(this).text());
+            });
+            $('.equipo').each(function (){
+                equipo.push($(this).text());
+            });
+            $('.nombre').each(function (){
+                nombre.push($(this).text());
+            });
+            $('.apellidop').each(function (){
+                apellidop.push($(this).text());
+            });
+            $('.apellidom').each(function (){
+                apellidom.push($(this).text());
+            });
+            $('.goles').each(function (){
+                goles.push($(this).text());
+            });
+            $('.faltas').each(function (){
+                faltas.push($(this).text());
+            });
+            $('.tarjetasama').each(function (){
+                tarjetasama.push($(this).text());
+            });
+            $('.tarjetasr').each(function (){
+                tarjetasr.push($(this).text());
+            });
+            $.ajax({
+                url:"inserts.php",
+                method:"POST",
+                data:{jornada:jornada,equipo:equipo,nombre:nombre,apellidop:apellidop,
+                apellidom:apellidom,goles:goles,faltas:faltas,tarjetasama:tarjetasama,tarjetasr:tarjetasr},
+                success:function (data){
+                    $("td[contenteditable='true']").text("");
+                    for (var i = 2; i <count; i++) {
+                        $('tr#'+i+'').remove();
+                    }
+                }
+            });
+
         });
     });
 </script>
-
-<script>
-    function registrar(){
-    }
-</script>
-</html>
