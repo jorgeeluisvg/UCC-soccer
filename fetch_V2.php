@@ -2,7 +2,7 @@
 if (isset($_POST['request'])){
     $request = $_POST['request'];
     $conn=mysqli_connect('localhost','root','admin','bd_ed');
-    $query ="SELECT * FROM jornada where equipo ='$request' group by jugador,apellidop,apellidom";
+    $query ="SELECT * FROM jugadores where equipo ='$request' group by nombre,apellidop,apellidom";
     $result =mysqli_query($conn,$query);
 
 
@@ -14,7 +14,7 @@ if (isset($_POST['request'])){
 
     // Recorrido de los resultados de la consulta y colocación de los datos en la tabla HTML
     while($fila = mysqli_fetch_array($result)) {
-        echo "<tr><td contenteditable='true' class='jornada'></td><td class='equipo'>".$fila["equipo"]."</td><td class='nombre'>".$fila["jugador"]."</td><td class='apellidop'>".$fila["apellidop"]."</td ><td class='apellidom'>".$fila["apellidom"]."</td><td contenteditable='true' class='goles'></td><td contenteditable='true' class='faltas'></td><td contenteditable='true' class='tarjetasama'></td><td contenteditable='true' class='tarjetasr'></td></tr>";
+        echo "<tr><td contenteditable='true' class='jornada'></td><td class='equipo'>".$fila["equipo"]."</td><td class='nombre'>".$fila["nombre"]."</td><td class='apellidop'>".$fila["apellidop"]."</td ><td class='apellidom'>".$fila["apellidom"]."</td><td contenteditable='true' class='goles'></td><td contenteditable='true' class='faltas'></td><td contenteditable='true' class='tarjetasama'></td><td contenteditable='true' class='tarjetasr'></td></tr>";
     }
     // Fin de la tabla HTML
     echo "</table>";};

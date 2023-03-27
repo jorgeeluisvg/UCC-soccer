@@ -20,7 +20,7 @@
                 <?php
                 include("conexion.php");
                 //get teams
-                $getTeams ="SELECT equipo FROM jornada group by equipo";
+                $getTeams ="SELECT equipo FROM registroequipos";
                 $result = $conn->query($getTeams);
                 if($result->num_rows> 0){
                     $options= mysqli_fetch_all($result, MYSQLI_ASSOC);

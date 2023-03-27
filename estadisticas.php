@@ -31,11 +31,7 @@ $conn=mysqli_connect('localhost','root','admin','bd_ed');
     <div class="container-md text-center">
         <div class="row d-flex justify-content-center">
             <div class="col-md-6">
-                <select id="liga" class="text-center m-2 form-select" name="liga">
-                    <option>Liga del Equipo</option>
-                    <option>Premier</option>
-                    <option>Ascenso</option>
-                </select>
+            <a href="index.php"><button class="btn btn-success">Menu</button></a>
             </div>
         </div>
     </div>
@@ -45,18 +41,8 @@ $conn=mysqli_connect('localhost','root','admin','bd_ed');
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 py-2">
                 <button class="btn btn-warning">Tabla General</button>
-                <button class="btn btn-warning">J1</button>
-                <button class="btn btn-warning">J2</button>
-                <button class="btn btn-warning">J3</button>
-                <button class="btn btn-warning">J4</button>
-                <button class="btn btn-warning">J5</button>
-                <button class="btn btn-warning">J6</button>
-                <button class="btn btn-warning">J7</button>
-                <button class="btn btn-warning">J8</button>
-                <button class="btn btn-warning">J9</button>
-                <button class="btn btn-warning">J10</button>
-                <button class="btn btn-warning">J11</button>
-                <button class="btn btn-warning">J12</button>
+                <a href="estadisticaspjornada.php"><button class="btn btn-warning">Tabla Por Jornadas</button></a>
+              
                 <!--TABLA-->
                 <br>
                 <br>
